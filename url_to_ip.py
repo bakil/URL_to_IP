@@ -1,10 +1,21 @@
 import socket
 print socket.gethostbyname('google.com')
-f = open(r"C:\Python27\code\list1.txt", "r")
+f = open("url_list.txt", "r")
+foundedIP = open("foundedIP.txt", "w")
+unfoundedURL = open("unfoundedURL.txt", "w")
 
 for url in f :
 	url=url.strip()
 	try:
-		print url , socket.gethostbyname(url)
+		ip = socket.gethostbyname(url)
+		print url , ip
+		
+		foundedIP.write(ip)
 	except:
 		print url
+		unfoundedURL.write(url)
+
+foundedIP.close()
+unfoundedURL.close()
+f.close()
+
